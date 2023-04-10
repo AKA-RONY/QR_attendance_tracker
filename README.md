@@ -16,3 +16,12 @@ send the Qr code to your mobile and scan it to the webcam. no respone will be gi
 try to debug the error see if it works
 
 ###
+
+### Commands to start the dev server
+
+```python
+# Run the command in the root directory 
+
+python -m QR_attendance_tracker
+
+```
