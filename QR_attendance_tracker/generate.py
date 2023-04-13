@@ -1,12 +1,11 @@
 import qrcode
 import cv2
 
-# Read the student names from the file/database
-with open('static/assets/student_data.txt', 'r') as f:
+with open('C:/OAT[ ver-2]/QR_attendance_tracker/QR_attendance_tracker/static/assets/student_data.txt', 'r') as f:
     names = f.readlines()
 
-def generateQR():
 
+def generateQR(names):
     names = [item.strip() for item in names]
     print(names)
 
@@ -14,15 +13,16 @@ def generateQR():
     for name in names:
         qr = qrcode.make(name)
         print(f'Generated QR code for {name}')
-        qr.save(f'static/assets/QRs/{name}.png')
+        qr.save(
+            f"C:/OAT[ ver-2]/QR_attendance_tracker/QR_attendance_tracker/static/assets/QR/{name.split()[0]}.png")
 
 
-def decodeQR():
+def decodeQR(names):
     # Decoding the QR
     for name in names:
 
         # Name of the QR Code Image file
-        filename = (f"static/assets/QRs/{name}.png")
+        filename = f"C:/OAT[ ver-2]/QR_attendance_tracker/QR_attendance_tracker/static/assets/QR/{name.split()[0]}.png"
 
         # read the QRCODE image
         image = cv2.imread(filename)
@@ -38,3 +38,12 @@ def decodeQR():
         if vertices_array is not None:
             print("QRCode data:")
             print(data)
+
+
+if __name__ == '__main__':
+    # Read the student names from the file/database
+    with open('C:/OAT[ ver-2]/QR_attendance_tracker/QR_attendance_tracker/static/assets/student_data.txt', 'r') as f:
+        names = f.readlines()
+
+    generateQR(names)
+    decodeQR(names)
