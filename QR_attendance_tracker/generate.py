@@ -1,7 +1,7 @@
 import qrcode
 import cv2
 
-with open('C:/OAT[ ver-2]/QR_attendance_tracker/QR_attendance_tracker/static/assets/student_data.txt', 'r') as f:
+with open('static/assets/student_data.txt', 'r') as f:
     names = f.readlines()
 
 
@@ -14,7 +14,7 @@ def generateQR(names):
         qr = qrcode.make(name)
         print(f'Generated QR code for {name}')
         qr.save(
-            f"C:/OAT[ ver-2]/QR_attendance_tracker/QR_attendance_tracker/static/assets/QR/{name.split()[0]}.png")
+            f"static/assets/QR/{name.split()[0]}.png")
 
 
 def decodeQR(names):
@@ -22,7 +22,7 @@ def decodeQR(names):
     for name in names:
 
         # Name of the QR Code Image file
-        filename = f"C:/OAT[ ver-2]/QR_attendance_tracker/QR_attendance_tracker/static/assets/QR/{name.split()[0]}.png"
+        filename = f"static/assets/QR/{name.split()[0]}.png"
 
         # read the QRCODE image
         image = cv2.imread(filename)
@@ -42,7 +42,7 @@ def decodeQR(names):
 
 if __name__ == '__main__':
     # Read the student names from the file/database
-    with open('C:/OAT[ ver-2]/QR_attendance_tracker/QR_attendance_tracker/static/assets/student_data.txt', 'r') as f:
+    with open('static/assets/student_data.txt', 'r') as f:
         names = f.readlines()
 
     generateQR(names)

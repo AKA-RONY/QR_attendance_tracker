@@ -11,18 +11,19 @@ def home():
     return render_template('home.html')
 
 
-@app.route("/qrscreen", methods=["POST"])
-def qrscreen():
+@app.route("/portal", methods=["POST"])
+def portal():
     """ Serving QR page for displaying QR"""
     userid = request.form["userID"]
     password = request.form["password"]
     print(userid, password)
     val = matchCreds(userid, password)
-    print(val)
-    if (val):
+    if (val == 0):
         return render_template('qrscreen.html', userID=userid)
-    else:
-        return "<h1>Invalid credentials</h1>"
+    elif(val == 1):
+        return render_template("teacherPortal.html")
+    elif(val == 2):
+        return render_template("admin.html")
 
 
 # Main driver Function
